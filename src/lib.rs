@@ -67,10 +67,8 @@ pub mod bmi {
             assert_eq!(INPUT, decoded);
         }
 
-        #[cfg(feature = "nightly")]
         extern crate test;
 
-        #[cfg(feature = "nightly")]
         #[bench]
         fn bench_1k_morton_decode(b: &mut test::Bencher) {
             let x = test::black_box(0x5555555555555555);
@@ -82,7 +80,6 @@ pub mod bmi {
             });
         }
 
-        #[cfg(feature = "nightly")]
         #[bench]
         fn bench_1k_morton_encode(b: &mut test::Bencher) {
             let (x, y) = test::black_box(INPUT);
