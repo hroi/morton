@@ -1,0 +1,8 @@
+[package]
+name = "morton"
+version = "0.1.0"
+authors = ["Hroi Sigurdsson <hroi@asdf.dk>"]
+description = "2D Morton/Z-order curve encoding/decoding"
+
+[features]
+nightly = []
