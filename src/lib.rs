@@ -1,6 +1,17 @@
-#![cfg_attr(feature = "nightly", feature(test))]
+//! Morton encoding functions.
+//!
+//! Includes a Intel BMI2 version for ~10x speed.
+//! Use `RUSTFLAGS="-C target-cpu=native"` when building to possibly
+//! get the machine-dependent version
+
+#![cfg_attr(all(feature = "nightly", test), feature(test))]
 #![cfg_attr(feature = "nightly", feature(cfg_target_feature))]
 #![cfg_attr(feature = "nightly", feature(link_llvm_intrinsics))]
+
+#[cfg(not(all(feature = "nightly", target_feature = "bmi2")))]
+pub use portable::{morton_encode, morton_decode};
+#[cfg(all(feature = "nightly", target_feature = "bmi2"))]
+pub use bmi::{morton_encode, morton_decode};
 
 #[cfg(test)]
 const INPUT: (u32, u32) = (0x123456, 0x456789);
